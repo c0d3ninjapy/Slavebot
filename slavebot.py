@@ -36,13 +36,23 @@ Master = "c0d3ninja"
 AI_NAME = "Ex Machina"
 
 def help():
-	commands = ["1. What is my ip?", "2. Platform?", "3. RAM?", "4. CPU", 
+	commands = ["1. What is my ip?", "2. Platform?", "3. RAM?", "4. CPU?", 
 	"5. MAC?", "6. Pocessor?", "7. Delete a file", "8. Empty the recycle bin", 
 	"9. What is your name?", "10. Who is your master?", "11. Datetime?", 
-	"12. Username?", "13. Ping!", "14. Shutdown!"]
+	"12. Username?", "13. Ping!", "14. Shutdown!", "15. Restart!", 
+	"16. Display all connections", "17. Display processes", "18. Kill a process"]
 	for names in commands:
 		print (names)
 
+def displayserv():
+	print ("Displaying processes..")
+	time.sleep(1)
+	return os.system("tasklist")
+
+def killaprocess():
+	PID = input("Enter process PID number: ")
+	return os.system("taskkill /PID " + PID + " /F")
+	
 def ping():
 	who = input("Who do you want to ping?: ")
 	os.system("ping " + who)
@@ -123,6 +133,14 @@ while True:
 	if "What is my ip?" in prompt:
 		print (localip())
 		print (externalip())
+	elif "help" in prompt:
+		print (help())
+	elif "Processes" in prompt:
+		print (processes())
+	elif "Kill a process" in prompt:
+		print (killaprocess())
+	elif "Display processes" in prompt:
+		print (displayserv())
 	elif "Display all connections" in prompt:
 		print (netstat())
 	elif "!Ping" in prompt:
